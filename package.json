@@ -1,0 +1,21 @@
+{
+  "name": "high-ticket-sales-conference",
+  "version": "1.0.0",
+  "description": "Website for High Ticket Sales Conference 2025",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": [
+    "sales",
+    "conference",
+    "high-ticket",
+    "events"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+} 
