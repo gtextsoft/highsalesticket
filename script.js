@@ -188,61 +188,82 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   })
   
   // Countdown Timer
-  function updateCountdown(targetDate, daysElement, hoursElement, minutesElement, secondsElement) {
-    const currentTime = new Date().getTime()
-    const timeRemaining = targetDate - currentTime
-  
-    if (timeRemaining <= 0) {
-      daysElement.textContent = "00"
-      hoursElement.textContent = "00"
-      minutesElement.textContent = "00"
-      secondsElement.textContent = "00"
-      return
+  function updateCountdown() {
+    const now = new Date();
+    // Set Abuja date to July 19, 2025 at 00:00:00
+    const abujaDate = new Date("2025-07-19T00:00:00");
+    const lagosDate = new Date("2025-06-28T00:00:00");
+    
+    // Get the badges
+    const abujaBadge = document.querySelector('.badge[data-event="abuja"]');
+    const lagosBadge = document.querySelector('.badge[data-event="lagos"]');
+    
+    // Determine which event is next
+    let targetDate;
+    let activeBadge;
+    let inactiveBadge;
+    
+    // Always prioritize Abuja date first
+    if (now < abujaDate) {
+        // Abuja is next
+        targetDate = abujaDate;
+        activeBadge = abujaBadge;
+        inactiveBadge = lagosBadge;
+        
+        // Calculate time difference
+        const timeLeft = targetDate - now;
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Update the countdown display
+        document.getElementById("days").textContent = days.toString().padStart(2, "0");
+        document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+        document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+
+        // Update badge states
+        if (activeBadge && inactiveBadge) {
+            activeBadge.classList.remove('inactive');
+            inactiveBadge.classList.add('inactive');
+        }
+    } else if (now < lagosDate) {
+        // If Abuja has passed, switch to Lagos
+        targetDate = lagosDate;
+        activeBadge = lagosBadge;
+        inactiveBadge = abujaBadge;
+        
+        // Calculate time difference
+        const timeLeft = targetDate - now;
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+        // Update the countdown display
+        document.getElementById("days").textContent = days.toString().padStart(2, "0");
+        document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+        document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+
+        // Update badge states
+        if (activeBadge && inactiveBadge) {
+            activeBadge.classList.remove('inactive');
+            inactiveBadge.classList.add('inactive');
+        }
+    } else {
+        // Both events are past
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
     }
-  
-    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
-  
-    daysElement.textContent = days < 10 ? `0${days}` : days
-    hoursElement.textContent = hours < 10 ? `0${hours}` : hours
-    minutesElement.textContent = minutes < 10 ? `0${minutes}` : minutes
-    secondsElement.textContent = seconds < 10 ? `0${seconds}` : seconds
   }
   
-  // Set countdown target dates (30 days from now for registration, 15 days for early bird)
-  const registrationTarget = new Date()
-  registrationTarget.setDate(registrationTarget.getDate() + 30)
+  // Helper function to find badge by text content
+  Element.prototype.contains = function(text) {
+    return this.textContent.includes(text);
+  };
   
-  const earlyBirdTarget = new Date()
-  earlyBirdTarget.setDate(earlyBirdTarget.getDate() + 15)
-  
-  // Get countdown elements
-  const daysElement = document.getElementById("days")
-  const hoursElement = document.getElementById("hours")
-  const minutesElement = document.getElementById("minutes")
-  const secondsElement = document.getElementById("seconds")
-  
-  const ebDaysElement = document.getElementById("eb-days")
-  const ebHoursElement = document.getElementById("eb-hours")
-  const ebMinutesElement = document.getElementById("eb-minutes")
-  const ebSecondsElement = document.getElementById("eb-seconds")
-  
-  // Update countdowns every second
-  if (daysElement && hoursElement && minutesElement && secondsElement) {
-    updateCountdown(registrationTarget, daysElement, hoursElement, minutesElement, secondsElement)
-    setInterval(() => {
-      updateCountdown(registrationTarget, daysElement, hoursElement, minutesElement, secondsElement)
-    }, 1000)
-  }
-  
-  if (ebDaysElement && ebHoursElement && ebMinutesElement && ebSecondsElement) {
-    updateCountdown(earlyBirdTarget, ebDaysElement, ebHoursElement, ebMinutesElement, ebSecondsElement)
-    setInterval(() => {
-      updateCountdown(earlyBirdTarget, ebDaysElement, ebHoursElement, ebMinutesElement, ebSecondsElement)
-    }, 1000)
-  }
+  // Update countdown every second
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
   
   // Pricing Toggle
   const pricingToggle = document.getElementById("pricingToggle")
@@ -503,49 +524,75 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     
     // Countdown Timer
     const updateCountdown = () => {
-        // Set target date (48 hours from now)
         const now = new Date();
-        const targetDate = new Date(now.getTime() + 48 * 60 * 60 * 1000);
+        // Set Abuja date to July 19, 2025 at 00:00:00
+        const abujaDate = new Date("2025-07-19T00:00:00");
+        const lagosDate = new Date("2025-06-28T00:00:00");
         
-        const updateTimer = () => {
-            const currentDate = new Date();
-            const difference = targetDate - currentDate;
+        // Get the badges
+        const abujaBadge = document.querySelector('.badge[data-event="abuja"]');
+        const lagosBadge = document.querySelector('.badge[data-event="lagos"]');
+        
+        // Determine which event is next
+        let targetDate;
+        let activeBadge;
+        let inactiveBadge;
+        
+        // Always prioritize Abuja date first
+        if (now < abujaDate) {
+            // Abuja is next
+            targetDate = abujaDate;
+            activeBadge = abujaBadge;
+            inactiveBadge = lagosBadge;
             
-            if (difference <= 0) {
-                // Timer expired
-                clearInterval(timerInterval);
-                return;
+            // Calculate time difference
+            const timeLeft = targetDate - now;
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Update the countdown display
+            document.getElementById("days").textContent = days.toString().padStart(2, "0");
+            document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+
+            // Update badge states
+            if (activeBadge && inactiveBadge) {
+                activeBadge.classList.remove('inactive');
+                inactiveBadge.classList.add('inactive');
             }
+        } else if (now < lagosDate) {
+            // If Abuja has passed, switch to Lagos
+            targetDate = lagosDate;
+            activeBadge = lagosBadge;
+            inactiveBadge = abujaBadge;
             
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-            
-            // Update countdown in hero section
-            const daysElement = document.getElementById('days');
-            const hoursElement = document.getElementById('hours');
-            const minutesElement = document.getElementById('minutes');
-            
-            if (daysElement) daysElement.innerText = days < 10 ? `0${days}` : days;
-            if (hoursElement) hoursElement.innerText = hours < 10 ? `0${hours}` : hours;
-            if (minutesElement) minutesElement.innerText = minutes < 10 ? `0${minutes}` : minutes;
-            
-            // Update other countdown displays if they exist
-            const countdownDisplay = document.querySelector('.timer-value');
-            if (countdownDisplay) {
-                countdownDisplay.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            // Calculate time difference
+            const timeLeft = targetDate - now;
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+            // Update the countdown display
+            document.getElementById("days").textContent = days.toString().padStart(2, "0");
+            document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+
+            // Update badge states
+            if (activeBadge && inactiveBadge) {
+                activeBadge.classList.remove('inactive');
+                inactiveBadge.classList.add('inactive');
             }
-        };
-        
-        // Initial call
-        updateTimer();
-        
-        // Update every second
-        const timerInterval = setInterval(updateTimer, 1000);
+        } else {
+            // Both events are past
+            document.getElementById("days").textContent = "00";
+            document.getElementById("hours").textContent = "00";
+            document.getElementById("minutes").textContent = "00";
+        }
     };
     
     updateCountdown();
+    setInterval(updateCountdown, 1000);
     
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
@@ -569,6 +616,41 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             document.body.style.overflow = "";
         }
     });
+
+    // Testimonial Carousel
+    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+    let currentSlide = 0;
+    const slideInterval = 5000; // Change slide every 5 seconds
+
+    function showSlide(index) {
+        // Remove active class from all slides
+        testimonialSlides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Add active class to current slide
+        testimonialSlides[index].classList.add('active');
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % testimonialSlides.length;
+        showSlide(currentSlide);
+    }
+
+    // Start the carousel
+    let slideTimer = setInterval(nextSlide, slideInterval);
+
+    // Pause carousel on hover
+    const carousel = document.querySelector('.testimonial-carousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(slideTimer);
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            slideTimer = setInterval(nextSlide, slideInterval);
+        });
+    }
   })
   
   // YouTube Carousel functionality
