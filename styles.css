@@ -398,7 +398,7 @@ p {
 
 .btn-primary {
   background: var(--gradient-amber);
-  color: var(--color-black);
+  color: var(--color-black) !important;
   box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
 }
 
@@ -1114,7 +1114,7 @@ p {
   align-items: flex-end;
   margin-block-start: 50px;
   width: 100%;
-  background-image: url(./public/hero.jpg);
+  background-image: url(./public/MrSalvation.jpeg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2258,6 +2258,12 @@ footer {
 }
 
 .ticket-card {
+  display: grid;
+  max-width: 500px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
   background: linear-gradient(
     145deg,
     rgba(17, 24, 39, 0.8),
