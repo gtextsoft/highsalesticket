@@ -734,3 +734,64 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   };
   
+  // Testimonial Carousel Logic
+  (function() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const prevBtn = document.querySelector('.testimonial-prev');
+    const nextBtn = document.querySelector('.testimonial-next');
+    const dots = document.querySelectorAll('.testimonial-dots .dot');
+    let current = 0;
+    let timer;
+    const interval = 5000;
+
+    function showSlide(idx) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === idx);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === idx);
+      });
+      current = idx;
+    }
+
+    function nextSlide() {
+      showSlide((current + 1) % slides.length);
+    }
+
+    function prevSlide() {
+      showSlide((current - 1 + slides.length) % slides.length);
+    }
+
+    function startTimer() {
+      timer = setInterval(nextSlide, interval);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+    }
+
+    if (slides.length > 1) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopTimer();
+        startTimer();
+      });
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopTimer();
+        startTimer();
+      });
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          showSlide(i);
+          stopTimer();
+          startTimer();
+        });
+      });
+      const slider = document.querySelector('.testimonial-slider');
+      slider.addEventListener('mouseenter', stopTimer);
+      slider.addEventListener('mouseleave', startTimer);
+      startTimer();
+    }
+  })();
+  
