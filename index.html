@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      High Ticket Sales Conference 2025 | 10X Your Revenue With Premium Clients
+      High Ticket Sales Virtual Conference 2025 | July 3rd-6th | Expert-Led Training
     </title>
     <meta
       name="description"
-      content="Join the exclusive High Ticket Sales Conference 2025 and learn how to close premium deals that transform your business. Limited seats available!"
+      content="Join the exclusive High Ticket Sales Virtual Conference 2025 (July 3rd-6th) featuring Sanjay Salil and learn how to close premium deals that transform your business."
     />
     <link rel="stylesheet" href="styles.css" />
     <link
@@ -19,6 +19,48 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    
+    <script>
+      // Countdown Timer
+      function updateCountdown() {
+        const now = new Date();
+        const conferenceDate = new Date("2025-07-03T09:00:00");
+        
+        // Calculate time difference
+        const timeLeft = conferenceDate - now;
+        
+        if (timeLeft > 0) {
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+          // Update the countdown display with proper formatting
+          const daysElement = document.getElementById("days");
+          const hoursElement = document.getElementById("hours");
+          const minutesElement = document.getElementById("minutes");
+          
+          if (daysElement) daysElement.textContent = days.toString().padStart(2, "0");
+          if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, "0");
+          if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, "0");
+        } else {
+          // Conference has ended
+          const daysElement = document.getElementById("days");
+          const hoursElement = document.getElementById("hours");
+          const minutesElement = document.getElementById("minutes");
+          
+          if (daysElement) daysElement.textContent = "00";
+          if (hoursElement) hoursElement.textContent = "00";
+          if (minutesElement) minutesElement.textContent = "00";
+        }
+      }
+
+      // Update countdown immediately when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        updateCountdown();
+        // Update every second
+        setInterval(updateCountdown, 1000);
+      });
+    </script>
   </head>
 
   <body>
@@ -34,7 +76,7 @@
     <header id="header" class="header">
       <div class="container">
         <nav class="nav">
-          <div class="logo">HTSC 2025</div>
+          <div class="logo">HTSC Virtual 2025</div>
 
           <button class="mobile-menu-toggle" id="navToggle">
             <i class="fas fa-bars"></i>
@@ -62,8 +104,8 @@
       <div class="container">
         <div class="hero-content">
           <div class="heroGridCont">
-            <!-- <div class="badgeContainer">
-              <div class="badge" data-event="abuja">
+            <div class="badgeContainer">
+              <div class="badge" data-event="virtual">
                 <svg
                   class="icon-calendar"
                   width="16"
@@ -80,32 +122,13 @@
                   <line x1="8" y1="2" x2="8" y2="6"></line>
                   <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                ABUJA: July 19-20
+                                 VIRTUAL: July 3rd-5th-6th, 2025
               </div>
-              <div class="badge inactive" data-event="lagos">
-                <svg
-                  class="icon-calendar"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                LAGOS: June 28-29
-              </div>
-            </div> -->
+            </div>
 
             <h1>
-              THE HIGH TICKET SALES CONFERENCE
-              <span class="highlight">2025</span>
+              THE HIGH TICKET SALES
+              <span class="highlight">VIRTUAL CONFERENCE 2025</span>
             </h1>
 
             <p>
@@ -114,7 +137,7 @@
             </p>
 
             <div class="countdown-container">
-              <div class="countdown-title">Early Bird Pricing Ends In:</div>
+              <div class="countdown-title">Conference Starts In:</div>
               <div class="countdown">
                 <div class="countdown-item">
                   <div class="countdown-number" id="days">02</div>
@@ -195,6 +218,9 @@
           <span class="section-tag">The Opportunity</span>
           <h2>Stop Trading Time For Money. Start Selling Premium Offers.</h2>
           <p class="section-subtitle">
+            For Coaches, Course Creators, Agency Owners, Consultants, Freelancers, Entrepreneurs, Professionals and Business Owners
+          </p>
+          <p>
             Selling low-ticket offers might help you survive, but the kind of
             wealth, freedom, and lifestyle you truly desire will only come when
             you learn how to sell high-ticket offers.
@@ -311,7 +337,7 @@
               <div class="expert-feature"><span class="feature-icon"><i class="fas fa-check-circle"></i></span> Scale offers with <span class="highlight">structure, not stress</span></div>
               <div class="expert-feature"><span class="feature-icon"><i class="fas fa-check-circle"></i></span> Hosted <span class="highlight">luxury conferences</span> that sell out fast</div>
             </div>
-            <a href="#" class="btn btn-primary btn-xl expert-cta">Learn From The Expert <i class="fas fa-arrow-right"></i></a>
+            <a href="#tickets" class="btn btn-primary btn-xl expert-cta">Learn From The Expert <i class="fas fa-arrow-right"></i></a>
             
           </div>
         </div>
@@ -343,11 +369,15 @@
               <h3>Sanjay Salil</h3>
               <p class="speaker-title">Co-Founder & CEO, IndiqAI | Media & AI Entrepreneur</p>
               <p class="speaker-bio short-bio">
-                Sanjay is a global entrepreneur and Harvard Business School student, leading AI ventures that transform education, media, and finance. He is recognized for building teams that deliver breakthrough innovation.
+                Sanjay Salil is the Co-Founder and CEO of IndiqAI, where he leads the development of advanced AI systems like VidyaAI, an adaptive learning platform delivering personalized, multilingual education with remarkable results.
               </p>
               <button class="read-more-btn" onclick="toggleSpeakerBio('salil', this)">View More</button>
               <div class="full-bio scrollable-bio" id="bio-salil" style="display:none;">
-                From broadcast journalism to frontier technology, Sanjay's entrepreneurial journey is focused on creating transformative solutions at the intersection of human potential and technological innovation. As a current Harvard Business School student, he is building AI-native ventures that redefine what's possible in education, media, and financial services. Based in Delhi, India, he leads IndiqAI as Co-Founder and CEO, developing sophisticated AI systems that amplify human capabilities. His ventures, including VidyaAI and Dailoqa, are recognized for breakthrough innovation and impact. Sanjay's work has been featured by CNN, The Washington Post, and The Guardian, and he is a regular speaker at global forums including Google Big Tent and Harvard's Sages & Scientists symposium.
+                Sanjay Salil is the Co-Founder and CEO of IndiqAI, where he leads the development of advanced AI systems like VidyaAI, an adaptive learning platform delivering personalized, multilingual education with remarkable results. His mission is to build AI that enhances—not replaces—human capabilities.
+                <br><br>
+                He also co-founded Dailoqa, partnering with former CIOs and banking leaders to create AI-driven solutions for complex challenges in financial services. Earlier, he founded MediaGuru, executing media transformation projects in over 15 countries, now evolving into an AI-first innovation hub.
+                <br><br>
+                Sanjay's work has been featured by CNN, The Guardian, and The Wall Street Journal. A frequent speaker at global forums like Google Big Tent and Harvard's Sages & Scientists Symposium, he's known for combining visionary leadership with technical excellence.
               </div>
             </div>
           </div>
@@ -594,8 +624,9 @@
       <div class="container pricingParCont">
         <div class="pricingCont">
           <div class="section-header">
-            <span class="section-tag">Event Pricing</span>
-            <h2>Choose Your Preferred Access Plan</h2>
+            <span class="section-tag">Virtual Conference Pricing</span>
+            <h2>Join the Virtual High Ticket Sales Conference</h2>
+            <p class="section-subtitle">July 3rd-6th, 2025 | 4-Day Intensive Virtual Experience</p>
           </div>
 
           <div class="ticket-grid">
@@ -909,130 +940,7 @@
           </div>
         </div>
 
-        <!-- Sponsorship Packages -->
-        <div class="pricingCont">
-          <div class="section-header">
-            <span class="section-tag">Sponsorship Packages</span>
-            <h2>Choose Your Preferred Sponsorship Plan</h2>
-          </div>
-
-          <div class="sponsorship-grid">
-            <!-- Gold Sponsorship -->
-            <div class="sponsorship-card">
-              <div class="sponsorship-header">
-                <h3>GOLD</h3>
-                <div class="sponsorship-price">₦10M</div>
-              </div>
-              <div class="sponsorship-features">
-                <div class="feature">
-                  <i class="fas fa-image"></i>
-                  <span>Logo Placement</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>1 Exclusive boardroom ticket</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>5 Regular tickets</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-book"></i>
-                  <span>Softcopies of Dr Stephen Akintayo Book</span>
-                </div>
-              </div>
-              <a
-                href="https://app.mailingboss.com/lists/6825f93882f1e/subscribe"
-                class="btn btn-primary btn-block"
-                >PURCHASE TICKETS</a
-              >
-            </div>
-
-            <!-- Diamond Sponsorship -->
-            <div class="sponsorship-card featured">
-              <div class="sponsorship-header">
-                <h3>Diamond</h3>
-                <div class="sponsorship-price">₦20M</div>
-              </div>
-              <div class="sponsorship-features">
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>2 Exclusive boardroom ticket</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>1 Exclusive ticket</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>5 Regular tickets</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-book"></i>
-                  <span>3 Signed Books by Dr Stephen Akintayo</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-store"></i>
-                  <span>Product Display Booth</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-video"></i>
-                  <span>Video Ads</span>
-                </div>
-              </div>
-              <a
-                href="https://app.mailingboss.com/lists/6825f93882f1e/subscribe"
-                class="btn btn-primary btn-block"
-                >PURCHASE TICKETS</a
-              >
-            </div>
-
-            <!-- Platinum Sponsorship -->
-            <div class="sponsorship-card premium">
-              <div class="sponsorship-header">
-                <h3>Platinum</h3>
-                <div class="sponsorship-price">₦50M</div>
-              </div>
-              <div class="sponsorship-features">
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>4 Exclusive boardroom ticket</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>1 Exclusive ticket</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>10 Regular tickets</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-book"></i>
-                  <span>5 Signed Books by Dr Stephen Akintayo</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-store"></i>
-                  <span>Product Display Booth</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-video"></i>
-                  <span>Video Ads</span>
-                </div>
-                <div class="feature">
-                  <i class="fas fa-microphone"></i>
-                  <span>Stage Time</span>
-                </div>
-              </div>
-              <a
-                href="https://app.mailingboss.com/lists/6825f93882f1e/subscribe"
-                class="btn btn-primary btn-block"
-                >PURCHASE TICKETS</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials enhanced-testimonials">
@@ -1108,7 +1016,7 @@
     <footer>
       <div class="container">
         <div class="footer-top">
-          <div class="footer-logo">HTSC 2025</div>
+          <div class="footer-logo">HTSC Virtual 2025</div>
 
           <div class="footer-social">
             <a href="#" class="social-icon"
@@ -1159,7 +1067,7 @@
 
         <div class="footer-bottom">
           <div class="footer-dates">
-            Lagos: June 28-29, 2025 | Abuja: July 19-20, 2025
+            Virtual Conference: July 3rd-6th, 2025
           </div>
 
           <div class="footer-links">
