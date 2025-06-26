@@ -58,4 +58,4 @@ To run the project locally:
 
 ## License
 
-© 2023 High Ticket Sales Conference. All rights reserved. 
+© 2025 Stephen Akintayo. All rights reserved. 
