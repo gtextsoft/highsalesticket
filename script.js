@@ -648,3 +648,101 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   })();
   
+  // Coupon Code Copy Function
+  function copyCouponCode() {
+    const couponCode = 'I50';
+    
+    // Try to use the modern clipboard API
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(couponCode).then(() => {
+        showCopyFeedback();
+      }).catch(() => {
+        fallbackCopyTextToClipboard(couponCode);
+      });
+    } else {
+      // Fallback for older browsers or non-secure contexts
+      fallbackCopyTextToClipboard(couponCode);
+    }
+  }
+
+  // Fallback copy function for older browsers
+  function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      showCopyFeedback();
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+    }
+    
+    document.body.removeChild(textArea);
+  }
+
+  // Show feedback when code is copied
+  function showCopyFeedback() {
+    const copyBtn = document.querySelector('.copy-btn');
+    const originalHTML = copyBtn.innerHTML;
+    
+    // Change button to show success
+    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+    copyBtn.style.background = '#10b981';
+    
+    // Create temporary toast notification
+    const toast = document.createElement('div');
+    toast.className = 'copy-toast';
+    toast.textContent = 'Coupon code copied!';
+    toast.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      z-index: 10000;
+      animation: slideInRight 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Reset button after 2 seconds
+    setTimeout(() => {
+      copyBtn.innerHTML = originalHTML;
+      copyBtn.style.background = '#f59e0b';
+    }, 2000);
+    
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.remove();
+      }
+    }, 3000);
+  }
+
+  // Add CSS animation for toast
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+  
