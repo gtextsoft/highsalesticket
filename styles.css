@@ -3271,4 +3271,12 @@ footer {
   0% {
     box-shadow: 0 15px 35px rgba(245, 158, 11, 0.3), 0 5px 15px rgba(0, 0, 0, 0.1);
   }
-  100% }
+  100% {
+    box-shadow: 0 20px 40px rgba(245, 158, 11, 0.4), 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
