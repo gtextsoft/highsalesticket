@@ -650,7 +650,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   
   // Coupon Code Copy Function
   function copyCouponCode() {
-    const couponCode = 'I50';
+    const couponCode = 'HIGH50';
     
     // Try to use the modern clipboard API
     if (navigator.clipboard && window.isSecureContext) {
